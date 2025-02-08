@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оракул Предсказаний</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Бегущие строки -->
+    <div class="scrolling-text">
+        <marquee behavior="scroll" direction="left" scrollamount="10">
+            Добро пожаловать в мир предсказаний! Судьба ждет вас... Добро пожаловать в мир предсказаний! Судьба ждет вас...
+        </marquee>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <h1>Оракул Предсказаний</h1>
+        <p id="prediction">Нажмите на кнопку, чтобы узнать свое будущее!</p>
+        <button id="predictButton">Предскажи мне будущее!</button>
+
+        <!-- Кнопка пожертвования -->
+        <div class="donation-section">
+            <h2>Поддержите Оракула!</h2>
+            <p>Если вам понравилось предсказание, поддержите нас пожертвованием:</p>
+            <form action="https://www.paypal.com/donate" method="post" target="_top">
+                <input type="hidden" name="hosted_button_id" value="U-6P77108196405245M">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal — безопасный и удобный способ оплаты онлайн." alt="Пожертвовать с помощью PayPal">
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+/* styles.css */
+/* Общие настройки */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background-color: #121212; /* Темный фон */
+    overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+}
+
+/* Бегущие строки */
+.scrolling-text {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный темный фон */
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.scrolling-text marquee {
+    font-size: 20px;
+    color: #ffcc00; /* Яркий текст */
+    font-weight: bold;
+}
+
+/* Основной контейнер */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #ffcc00; /* Яркий заголовок */
+}
+
+#prediction {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #ffffff; /* Белый текст */
+}
+
+#predictButton {
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    background-color: #ff6f61; /* Красная кнопка */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Тени для кнопки */
+}
+
+#predictButton:hover {
+    background-color: #ff5252; /* Более яркая красная кнопка при наведении */
+}
+
+/* Секция пожертвований */
+.donation-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный белый фон */
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Тени для секции */
+}
+
+.donation-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffcc00; /* Яркий заголовок */
+}
+
+.donation-section p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #ffffff; /* Белый текст */
+}
+
+.donation-section form {
+    display: inline-block;
+}// script.js
+
+const predictions = [
+    "Сегодня у вас будет отличный день!",
+    "Ваше терпение принесет плоды в ближайшем будущем.",
+    "Вы встретите человека, который изменит вашу жизнь.",
+    "Будьте осторожны с принятием решений сегодня.",
+    "Удача на вашей стороне! Используйте этот шанс.",
+    "Вам предстоит неожиданное путешествие.",
+    "Вы найдете решение проблемы, которая давно беспокоила вас.",
+    "Звезды говорят, что вы готовы к большим изменениям.",
+    "Не бойтесь рисковать — успех уже рядом.",
+    "Ваш труд будет вознагражден в самое ближайшее время.",
+    "Вы откроете для себя новое хобби или интерес.",
+    "Кто-то окажет вам неожиданную поддержку.",
+    "Ваши мечты становятся реальностью.",
+    "Не забывайте заботиться о себе и своих близких.",
+    "Вы обретете мудрость через опыт.",
+    "Время для перемен — действуйте сейчас!",
+    "Вы станете примером для других.",
+    "Ваша интуиция поможет вам принять правильное решение.",
+    "Не бойтесь новых возможностей — они приведут к успеху.",
+    "Счастье ждет вас за поворотом."
+];
+
+document.addEventListener('DOMContentLoaded', function () {
+    const predictButton = document.getElementById('predictButton');
+    if (predictButton) {
+        predictButton.addEventListener('click', function () {
+            const randomIndex = Math.floor(Math.random() * predictions.length);
+            const predictionElement = document.getElementById('prediction');
+            if (predictionElement) {
+                predictionElement.textContent = predictions[randomIndex];
+            } else {
+                console.error("Элемент с ID 'prediction' не найден!");
+            }
+        });
+    } else {
+        console.error("Кнопка с ID 'predictButton' не найдена!");
+    }
+});
